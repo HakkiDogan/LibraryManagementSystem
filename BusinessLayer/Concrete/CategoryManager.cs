@@ -45,6 +45,7 @@ namespace BusinessLayer.Concrete
 
         public void UpdateCategory(Category category)
         {
+            category.IsActive = true;
             _categoryDal.Update(category);
         }
     }

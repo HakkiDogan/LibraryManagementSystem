@@ -1,0 +1,22 @@
+﻿@model EntityLayer.Concrete.Category
+@{
+	ViewData["Title"] = "GetCategory";
+	Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+
+@using (Html.BeginForm("UpdateCategory", "Category", FormMethod.Post))
+{
+	<div class="form-group" style="margin-bottom:15px">
+		<label class="font-weight-bold">ID</label>
+		@Html.TextBoxFor(c => c.Id, new {@class="form-control"})
+		<br />
+		<label class="font-weight-bold">Kategori Adı</label>
+		@Html.TextBoxFor(c => c.Name, new {@class="form-control"})
+	</div>
+	<div>
+		<button class="btn btn-warning">Güncelle</button>
+	</div>
+}
+
+

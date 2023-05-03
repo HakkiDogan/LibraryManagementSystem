@@ -38,6 +38,21 @@ namespace LibraryManagementSystem.Controllers
             _categoryService.RemoveCategory(id);
             return RedirectToAction("Index");
         }
+
+        
+        public IActionResult GetCategory(int id)
+        {
+            var category = _categoryService.GetById(id);
+            return View("GetCategory",category);
+        }
+
+        
+        public IActionResult UpdateCategory(Category category)
+        {
+            _categoryService.UpdateCategory(category);
+            return RedirectToAction("Index");
+        }
+
         
     }
 }

@@ -6,7 +6,7 @@
     Layout = "~/Views/Shared/Layout.cshtml";
 }
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
 
 <h1>Kategoriler</h1>
 
@@ -23,9 +23,10 @@
             <td>@c.Id</td>
             <td>@c.Name</td>
             <td><a href="/Category/RemoveCategory/@c.Id" class="btn btn-danger ">Sil</a></td>
-            <td><a href="#" class="btn btn-success">Güncelle</a></td>
+            <td><a href="/Category/GetCategory/@c.Id" class="btn btn-success">Güncelle</a></td>
         </tr>
     }
 
 </table>
 <a href="/Category/AddCategory" class="btn btn-primary">Yeni Kategori Ekle</a>
+<br /><br />
