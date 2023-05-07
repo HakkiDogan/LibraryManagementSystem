@@ -1,0 +1,26 @@
+﻿@model EntityLayer.Concrete.Writer
+@{
+	ViewData["Title"] = "UpdateWriter";
+	Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+@using (Html.BeginForm("UpdateWriter", "Writer", FormMethod.Post))
+{
+	<div class="form-group" style="margin-bottom:15px">
+		<label class="font-weight-bold">ID</label>
+		@Html.TextBoxFor(w => w.WriterId, new {@class="form-control"})
+		<br />
+		<label class="font-weight-bold">Yazar Adı</label>
+		@Html.TextBoxFor(w => w.Name, new {@class="form-control"})
+		<br />
+		<label class="font-weight-bold">Yazar Adı</label>
+		@Html.TextBoxFor(w => w.Surname, new {@class="form-control"})
+		<br />
+		<label class="font-weight-bold">Yazar Detay Bilgileri</label>
+		@Html.TextAreaFor(w => w.Detail, new {@class="form-control"})		
+	</div>
+	<div>
+		<button class="btn btn-warning">Güncelle</button>
+	</div>
+}
+

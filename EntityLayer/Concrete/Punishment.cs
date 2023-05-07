@@ -9,7 +9,7 @@ namespace EntityLayer.Concrete
 {
     public class Punishment : IEntity
     {
-        public int Id { get; set; }
+        public int PunishmentId { get; set; }
         public int MemberId { get; set; }
         public int BookTransactionId { get; set; }
         public DateTime StartDate { get; set; }

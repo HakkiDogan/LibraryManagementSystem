@@ -3,6 +3,7 @@ using BusinessLayer.Concrete;
 using DataAccessLayer.Abstract;
 using DataAccessLayer.Concrete;
 using DataAccessLayer.Concrete.EntityFramework;
+using DataAccessLayer.Concrete.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -36,7 +37,16 @@ namespace LibraryManagementSystem
             services.AddTransient<ICategoryService, CategoryManager>();
             services.AddSingleton<ICategoryDal, EfCategoryDal>();
 
-            services.AddControllersWithViews();
+			services.AddTransient<IWriterService, WriterManager>();
+			services.AddSingleton<IWriterDal, EfWriterDal>();
+
+			services.AddTransient<IBookService, BookManager>();
+			services.AddSingleton<IBookDal, EfBookDal>();
+
+			services.AddTransient<IPublisherService, PublisherManager>();
+			services.AddSingleton<IPublisherDal, EfPublisherDal>();
+
+			services.AddControllersWithViews();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

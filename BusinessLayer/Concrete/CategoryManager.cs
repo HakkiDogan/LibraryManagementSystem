@@ -30,7 +30,7 @@ namespace BusinessLayer.Concrete
 
         public Category GetById(int id)
         {
-            return _categoryDal.Get(c=> c.Id == id);
+            return _categoryDal.Get(c=> c.CategoryId == id);
         }
 
         public void RemoveCategory(int id)

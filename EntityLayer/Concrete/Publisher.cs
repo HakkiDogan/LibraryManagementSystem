@@ -9,7 +9,7 @@ namespace EntityLayer.Concrete
 {
     public class Publisher : IEntity
     {
-        public int Id { get; set; }
+        public int PublisherId { get; set; }
         public string Name { get; set; }
         public string Address { get; set; }
         public bool IsActive { get; set; }

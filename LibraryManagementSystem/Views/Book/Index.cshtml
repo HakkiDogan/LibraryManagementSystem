@@ -1,0 +1,44 @@
+﻿@using EntityLayer.Concrete
+@model List<Book>
+@{
+	ViewData["Title"] = "Index";
+	Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<h1>Kitap Sayfası</h1>
+
+<div style="margin-bottom:15px; margin-top:15px;">
+     <input type="text" class="form-control" placeholder="Aranacak kitabı giriniz"/>
+ </div>
+
+<table class="table table-bordered" style="margin-bottom:15px; margin-top:15px;">
+	<tr>
+		<th>ID</th>
+		<th>Kitap Adı</th>
+		<th>Kitap Yazarı</th>
+		<th>Kategorisi</th>
+		<th>Basım Yılı</th>
+		<th>Yayın Evi</th>
+		<th>Sayfa Sayısı</th>
+		<th>Sil</th>
+		<th>Güncelle</th>
+	</tr>
+	@foreach (var b in Model)
+	{
+		<tr>
+			<td>@b.BookId</td>
+			<td>@b.Name</td>
+			<td>@b.Writer.Name @b.Writer.Surname</td>
+			<td>@b.Category.Name</td>
+			<td>@b.YearOfPublication</td>
+			<td>@b.Publisher.Name</td>
+			<td>@b.Page</td>
+			<td><a href="/Book/ReemoveBook/@b.BookId" class="btn btn-danger ">Sil</a></td>
+			<td><a href="/Book/UpdateBook/@b.BookId" class="btn btn-success">Güncelle</a></td>
+		</tr>
+	}
+
+</table>
+<a href="/Book/AddBook" class="btn btn-primary">Yeni Kitap Ekle</a>
+<br />
+<br />

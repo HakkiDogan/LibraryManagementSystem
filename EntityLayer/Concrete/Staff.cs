@@ -9,7 +9,7 @@ namespace EntityLayer.Concrete
 {
     public class Staff : IEntity
     {
-        public int Id { get; set; }
+        public int StaffId { get; set; }
         public string Name { get; set; }
         public bool IsActive { get; set; }
     }

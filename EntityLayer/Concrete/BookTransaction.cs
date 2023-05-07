@@ -9,7 +9,7 @@ namespace EntityLayer.Concrete
 {
     public class BookTransaction : IEntity
     {
-        public int Id { get; set; }
+        public int BookTransactionId { get; set; }
         public int BookId { get; set; }
         public int MemberId { get; set; }
         public int StaffId { get; set; }

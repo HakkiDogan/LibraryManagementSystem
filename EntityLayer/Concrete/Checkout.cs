@@ -9,7 +9,7 @@ namespace EntityLayer.Concrete
 {
     public class Checkout : IEntity
     {
-        public int Id { get; set; }
+        public int CheckoutId { get; set; }
         public string Month { get; set; }
         public decimal Amount { get; set; }
     }

@@ -1,0 +1,39 @@
+﻿@model EntityLayer.Concrete.Book
+@{
+	ViewData["Title"] = "AddBook";
+	Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<form class="form-group" method="post" style="margin:15px">
+	<div>
+		<label>Kitap Adı</label>
+		@Html.TextBoxFor(b => b.Name, new {@class="form-control"})
+	</div>
+	<div style="margin-top:15px">
+		<label>Kitap Kategori</label>
+		@Html.DropDownListFor(c => c.CategoryId,(List<SelectListItem>)ViewBag.Categories,
+		new {@class= "form-control"} )
+	</div>
+	<div style="margin-top:15px">
+		<label>Kitap Yazar</label>
+		@Html.DropDownListFor(c => c.WriterId,(List<SelectListItem>)ViewBag.Writers,
+		new {@class= "form-control"} )
+	</div>
+	<div style="margin-top:15px">
+		<label>Basım Yılı</label>
+		@Html.TextBoxFor(b => b.YearOfPublication, new {@class="form-control"})
+	</div>
+	<div style="margin-top:15px">
+		<label>Yayınevi</label>
+		@Html.DropDownListFor(c => c.PublisherId,(List<SelectListItem>)ViewBag.Publishers,
+		new {@class= "form-control"} )
+	</div>
+	<div style="margin-top:15px">
+		<label>Sayfa Sasyısı</label>
+		@Html.TextBoxFor(b => b.Page, new {@class="form-control"})
+	</div>
+	<div style="margin-top:15px">
+		<button class="btn btn-info" id="Btn1">Kitap Ekle</button>
+	</div>
+</form>
+
