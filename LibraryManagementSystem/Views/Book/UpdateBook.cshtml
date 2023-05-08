@@ -1,0 +1,40 @@
+﻿@model EntityLayer.Concrete.Book
+@{
+	ViewData["Title"] = "UpdateBook";
+	Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+
+@using (Html.BeginForm("UpdateBook", "Book", FormMethod.Post))
+{
+	<div class="form-group" style="margin-bottom:15px">
+		<label class="font-weight-bold">ID</label>
+		@Html.TextBoxFor(b => b.BookId, new {@class="form-control"})
+		<br />
+		<label class="font-weight-bold">Yazar Adı</label>
+		@Html.TextBoxFor(b => b.Name, new {@class="form-control"})
+		<br />
+		<label class="font-weight-bold">Kategori</label>
+		@Html.DropDownListFor(c => c.CategoryId,(List<SelectListItem>)ViewBag.Categories,
+	new {@class= "form-control"} )
+		<br />
+		<label class="font-weight-bold">Yazar</label>
+		@Html.DropDownListFor(c => c.WriterId,(List<SelectListItem>)ViewBag.Writers,
+	new {@class= "form-control"} )
+		<br />
+		<label class="font-weight-bold">Basım Yılı</label>
+		@Html.TextBoxFor(b => b.YearOfPublication, new {@class="form-control"})
+		<br />
+		<label class="font-weight-bold">Yayınevi</label>
+		@Html.DropDownListFor(c => c.PublisherId,(List<SelectListItem>)ViewBag.Publishers,
+	new {@class= "form-control"} )
+		<br />
+		<label class="font-weight-bold">Sayfa Sayısı</label>
+		@Html.TextBoxFor(b => b.Page, new {@class="form-control"})
+	</div>
+	<div>
+		<button class="btn btn-warning">Güncelle</button>
+	</div>
+}
+
+

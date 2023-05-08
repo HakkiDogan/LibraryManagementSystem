@@ -44,7 +44,11 @@ namespace BusinessLayer.Concrete
 
 		public Book GetById(int id)
 		{
-			return _bookDal.Get(b => b.BookId == id);
+			var book = _bookDal.Get(b => b.BookId == id);
+			book.Category = _categoryService.GetById(book.CategoryId);
+			book.Writer = _writerService.GetById(book.WriterId);
+			book.Publisher = _publisherService.GetById(book.PublisherId);
+			return book;
 		}
 
 		public void RemoveBook(int id)
