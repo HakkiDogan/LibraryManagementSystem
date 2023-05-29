@@ -1,5 +1,7 @@
 ﻿using BusinessLayer.Abstract;
+using BusinessLayer.ValidationRules.FluentValidation;
 using EntityLayer.Concrete;
+using FluentValidation.Results;
 using Microsoft.AspNetCore.Mvc;
 
 
@@ -29,8 +31,22 @@ namespace LibraryManagementSystem.Controllers
         [HttpPost]
         public IActionResult AddCategory(Category category)
         {
-            _categoryService.AddCategory(category);
-            return RedirectToAction("Index");
+            CategoryValidator categoryValidator = new CategoryValidator();
+            ValidationResult result= categoryValidator.Validate(category);
+            if(result.IsValid)
+            {
+				_categoryService.AddCategory(category);
+				return RedirectToAction("Index");
+            }
+            else
+            {
+                foreach (var item in result.Errors)
+                {
+                    ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
+                }
+            }
+            return View();
+           
         }
 
         public IActionResult RemoveCategory(int id)

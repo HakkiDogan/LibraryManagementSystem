@@ -20,6 +20,7 @@ namespace BusinessLayer.Concrete
 
         public void AddCategory(Category category)
         {
+            category.IsActive = true;
             _categoryDal.Add(category);
         }
 

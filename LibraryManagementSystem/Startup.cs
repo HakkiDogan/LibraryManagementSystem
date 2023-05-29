@@ -46,6 +46,12 @@ namespace LibraryManagementSystem
 			services.AddTransient<IPublisherService, PublisherManager>();
 			services.AddSingleton<IPublisherDal, EfPublisherDal>();
 
+			services.AddTransient<IStaffService, StaffManager>();
+			services.AddSingleton<IStaffDal, EfStaffDal>();
+
+			services.AddTransient<IMemberService, MemberManager>();
+			services.AddSingleton<IMemberDal, EfMemberDal>();
+
 			services.AddControllersWithViews();
         }
 
@@ -73,7 +79,7 @@ namespace LibraryManagementSystem
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Category}/{action=Index}/{id?}");
             });
         }
     }

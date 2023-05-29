@@ -1,0 +1,50 @@
+﻿@using EntityLayer.Concrete
+@using X.PagedList
+@using X.PagedList.Mvc.Bootstrap4.Core;
+@using X.PagedList.Mvc.Core
+@model IPagedList<Member>
+
+@{
+	ViewData["Title"] = "Index";
+	Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<h1>Üyeler</h1>
+
+<table class="table table-bordered">
+	<tr>
+		<th>ID</th>
+		<th>Üye Adı</th>
+		<th>Üye Soyadı</th>
+		<th>E-Posta</th>
+		<th>Kullanıcı Adı</th>
+		<th>Telefon</th>
+		<th>Okul</th>
+		<th>Sil</th>
+		<th>Güncelle</th>
+	</tr>
+	@foreach (var m in Model)
+	{
+		<tr>
+			<td>@m.MemberId</td>
+			<td>@m.Name</td>
+			<td>@m.Surname</td>
+			<td>@m.Mail</td>
+			<td>@m.UserName</td>
+			<td>@m.PhoneNumber</td>
+			<td>@m.School</td>
+			<td>
+				@Html.ActionLink("Sil","RemoveMember", new {id=m.MemberId} ,
+			new {@class="btn btn-danger", onclick="return confirm('Üyeyi silmek istiyor musunuz?')"})
+			</td>
+			<td><a href="/Member/UpdateMember/@m.MemberId" class="btn btn-success">Güncelle</a></td>
+		</tr>
+	}
+
+</table>
+@Html.PagedListPager((IPagedList)Model, page => Url.Action("Index", new {page}),Bootstrap4PagedListRenderOptions.Classic)
+
+<a href="/Member/AddMember" class="btn btn-primary">Yeni Üye Ekle</a>
+<br />
+<br />
+

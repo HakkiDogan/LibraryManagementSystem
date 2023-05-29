@@ -1,0 +1,21 @@
+﻿@model EntityLayer.Concrete.Staff
+@{
+	ViewData["Title"] = "UpdateStaff";
+	Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+@using (Html.BeginForm("UpdateStaff", "Staff", FormMethod.Post))
+{
+	<div class="form-group" style="margin-bottom:15px">
+		<label class="font-weight-bold">ID</label>
+		@Html.TextBoxFor(s => s.StaffId, new {@class="form-control"})
+		<br />
+		<label class="font-weight-bold">Personel Adı</label>
+		@Html.TextBoxFor(s => s.Name, new {@class="form-control"})
+		<br />
+	</div>
+	<div>
+		<button class="btn btn-warning">Güncelle</button>
+	</div>
+}
+
