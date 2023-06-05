@@ -14,7 +14,7 @@ namespace EntityLayer.Concrete
         public int MemberId { get; set; }
         public int StaffId { get; set; }
         public DateTime IssueDate { get; set; }
-        public DateTime? RetrunDate { get; set; }
+        public DateTime? ReturnDate { get; set; }
         public Book Book { get; set; }
         public Member Member { get; set; }
         public Staff Staff { get; set;}

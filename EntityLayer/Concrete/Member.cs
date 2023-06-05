@@ -18,6 +18,6 @@ namespace EntityLayer.Concrete
         public string? Photograph { get; set; }
         public string PhoneNumber { get; set; }
         public string School { get; set; }
-        public bool IsActive { get; set; }
+        public bool IsDeleted { get; set; }
     }
 }

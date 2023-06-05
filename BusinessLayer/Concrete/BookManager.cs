@@ -26,13 +26,15 @@ namespace BusinessLayer.Concrete
 
 		public void AddBook(Book book)
 		{
-			book.IsActive = true;
+			book.Category = _categoryService.GetById(book.CategoryId);
+			book.Writer = _writerService.GetById(book.WriterId);
+			book.Publisher = _publisherService.GetById(book.PublisherId);
 			_bookDal.Add(book);
 		}
 
 		public List<Book> GetAll()
 		{
-			var books = _bookDal.GetAll().Where(c => c.IsActive).ToList();
+			var books = _bookDal.GetAll().Where(c => c.IsDeleted == false).ToList();
 			books.ForEach(b =>
 			{
 				b.Category = _categoryService.GetById(b.CategoryId);
@@ -56,14 +58,13 @@ namespace BusinessLayer.Concrete
 			var book = GetById(id);
 			if (book != null)
 			{
-				book.IsActive = false;
+				book.IsDeleted = true;
 				_bookDal.Update(book);
 			}
 		}
 
 		public void UpdateBook(Book book)
 		{
-			book.IsActive = true;
 			_bookDal.Update(book);
 		}
 	}

@@ -21,13 +21,12 @@ namespace BusinessLayer.Concrete
 
 		public void AddWriter(Writer writer)
 		{
-			writer.IsActive = true;
 			_writerDal.Add(writer);
 		}
 
 		public List<Writer> GetAll()
 		{
-			return _writerDal.GetAll().Where(w => w.IsActive).ToList();
+			return _writerDal.GetAll().Where(w => w.IsDeleted == false).ToList();
 		}
 
 		public Writer GetById(int id)
@@ -40,14 +39,13 @@ namespace BusinessLayer.Concrete
 			var writer = GetById(id);
 			if (writer != null)
 			{
-				writer.IsActive = false;
+				writer.IsDeleted = true;
 				_writerDal.Update(writer);
 			}
 		}
 
 		public void UpdateWriter(Writer writer)
 		{
-			writer.IsActive = true;
 			_writerDal.Update(writer);
 		}
 	}

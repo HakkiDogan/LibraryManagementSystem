@@ -1,0 +1,35 @@
+﻿@model EntityLayer.Concrete.BookTransaction
+@{
+    ViewData["Title"] = "LendingBook";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<form class="form-group" method="post" style="margin:15px">
+	<div>
+		<label>Üye Adı</label>
+		@Html.DropDownListFor(m => m.MemberId,(List<SelectListItem>)ViewBag.Members,
+		new {@class= "form-control"} )
+	</div>
+	<div style="margin-top:15px">
+		<label>Kitap Adı</label>
+		@Html.DropDownListFor(b => b.BookId,(List<SelectListItem>)ViewBag.Books,
+		new {@class= "form-control"} )
+	</div>
+	<div style="margin-top:15px">
+		<label>Personel Adı</label>
+		@Html.DropDownListFor(s => s.StaffId,(List<SelectListItem>)ViewBag.Staffs,
+		new {@class= "form-control"} )
+	</div>
+	<div style="margin-top:15px">
+		<label>Kitap Alış Tarihi</label>
+		<input type="text" class="form-control" name="IssueDate" value="@DateTime.Now.ToShortDateString()" readonly/>
+	</div>
+	<div style="margin-top:15px">
+		<label>Kitap İade Tarihi</label>
+		<input type="text" class="form-control" name="ReturnDate" value="@DateTime.Now.AddDays(7).ToShortDateString()" readonly />
+	</div>
+
+	<div style="margin-top:15px">
+		<button class="btn btn-info" id="Btn1">Kitapı Ödünç Ver</button>
+	</div>
+</form>

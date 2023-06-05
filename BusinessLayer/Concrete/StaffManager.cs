@@ -21,13 +21,12 @@ namespace BusinessLayer.Concrete
 
 		public void AddStaff(Staff staff)
 		{
-			staff.IsActive = true;
 			_staffDal.Add(staff);
 		}
 
 		public List<Staff> GetAll()
 		{
-			return _staffDal.GetAll().Where(s => s.IsActive).ToList();
+			return _staffDal.GetAll().Where(s => s.IsDeleted == false).ToList();
 		}
 
 		public Staff GetById(int id)
@@ -40,14 +39,13 @@ namespace BusinessLayer.Concrete
 			var staff = GetById(id);
 			if (staff != null)
 			{
-				staff.IsActive = false;
+				staff.IsDeleted = true;
 				_staffDal.Update(staff);
 			}
 		}
 
 		public void UpdateStaff(Staff staff)
 		{
-			staff.IsActive = true;
 			_staffDal.Update(staff);
 		}
 	}

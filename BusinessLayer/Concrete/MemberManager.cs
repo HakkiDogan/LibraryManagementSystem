@@ -21,13 +21,12 @@ namespace BusinessLayer.Concrete
 
 		public void AddMember(Member member)
 		{
-			member.IsActive = true;
 			_memberDal.Add(member);
 		}
 
 		public List<Member> GetAll()
 		{
-			return _memberDal.GetAll().Where(w => w.IsActive).ToList();
+			return _memberDal.GetAll().Where(w => w.IsDeleted == false).ToList();
 		}
 
 		public Member GetById(int id)
@@ -40,14 +39,13 @@ namespace BusinessLayer.Concrete
 			var member = GetById(id);
 			if (member != null)
 			{
-				member.IsActive = false;
+				member.IsDeleted = true;
 				_memberDal.Update(member);
 			}
 		}
 
 		public void UpdateMember(Member member)
 		{
-			member.IsActive = true;
 			_memberDal.Update(member);
 		}
 	}

@@ -20,13 +20,12 @@ namespace BusinessLayer.Concrete
 
         public void AddCategory(Category category)
         {
-            category.IsActive = true;
             _categoryDal.Add(category);
         }
 
         public List<Category> GetAll()
         {
-            return _categoryDal.GetAll().Where(c => c.IsActive).ToList();
+            return _categoryDal.GetAll().Where(c => c.IsDeleted == false).ToList();
         }
 
         public Category GetById(int id)
@@ -39,14 +38,13 @@ namespace BusinessLayer.Concrete
             var category = GetById(id);
             if (category != null)
             {
-                category.IsActive = false;
+                category.IsDeleted = true;
                 _categoryDal.Update(category);
             }          
         }
 
         public void UpdateCategory(Category category)
         {
-            category.IsActive = true;
             _categoryDal.Update(category);
         }
     }

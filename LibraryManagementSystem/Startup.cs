@@ -33,7 +33,7 @@ namespace LibraryManagementSystem
             //services.AddDbContext<Context>(options =>
             //    options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
-            //Hepsi için eklenmeli
+            //Tüm kullanýlan dependency injectionlar eklenmeli.
             services.AddTransient<ICategoryService, CategoryManager>();
             services.AddSingleton<ICategoryDal, EfCategoryDal>();
 
@@ -51,6 +51,9 @@ namespace LibraryManagementSystem
 
 			services.AddTransient<IMemberService, MemberManager>();
 			services.AddSingleton<IMemberDal, EfMemberDal>();
+
+			services.AddTransient<IBookTransactionService, BookTransactionManager>();
+			services.AddSingleton<IBookTransactionDal, EfBookTransactionDal>();
 
 			services.AddControllersWithViews();
         }

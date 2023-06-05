@@ -26,7 +26,7 @@ namespace BusinessLayer.Concrete
 
 		public List<Publisher> GetAll()
 		{
-			return _publisherDal.GetAll().Where(w => w.IsActive).ToList();
+			return _publisherDal.GetAll().Where(w => w.IsDeleted == false).ToList();
 		}
 	}
 }

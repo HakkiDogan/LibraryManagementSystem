@@ -64,12 +64,7 @@ namespace LibraryManagementSystem.Controllers
 		[HttpPost]
 		public IActionResult AddBook(Book book)
 		{
-			var category = _categoryService.GetById(book.CategoryId);
-			var writer = _writerService.GetById(book.WriterId);
-			var publisher = _publisherService.GetById(book.PublisherId);
-			book.Category =	category;
-			book.Writer = writer;
-			book.Publisher = publisher;
+			
 			_bookService.AddBook(book);
 			return RedirectToAction("Index");
 		}
