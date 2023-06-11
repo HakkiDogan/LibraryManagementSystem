@@ -2,7 +2,14 @@
 using BusinessLayer.ValidationRules.FluentValidation;
 using EntityLayer.Concrete;
 using FluentValidation.Results;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
+using System.Linq;
+using System.Security.Claims;
+using System.Threading.Tasks;
 
 namespace LibraryManagementSystem.Controllers
 {
@@ -15,9 +22,34 @@ namespace LibraryManagementSystem.Controllers
 			_memberService = memberService;
 		}
 
+        [HttpGet]
 		public IActionResult Login()
         {
             return View();
+        }
+
+		[HttpPost]
+        public async Task<IActionResult> Login(Member member)
+        {
+			var datavalue = _memberService.GetAll().FirstOrDefault(m => m.Mail == member.Mail && m.Password == member.Password);
+            if (datavalue != null)
+			{
+				var claims = new List<Claim>
+				{
+					new Claim(ClaimTypes.Name,datavalue.Mail)
+				};
+
+				var useridentity = new ClaimsIdentity(claims,"login");
+				ClaimsPrincipal principal= new ClaimsPrincipal(useridentity);
+				await HttpContext.SignInAsync(principal);
+                TempData["FullName"] = datavalue.Name.ToString()+" " + datavalue.Surname.ToString();
+                return RedirectToAction("Index", "User");
+			}
+			else
+			{
+                return View();
+            }
+			
         }
 
         [HttpGet]
@@ -45,5 +77,12 @@ namespace LibraryManagementSystem.Controllers
 			}
 			return View();
 		}
-	}
+
+
+        public async Task<IActionResult> LogOut()
+        {
+            await HttpContext.SignOutAsync();
+            return RedirectToAction("Login");
+        }
+    }
 }

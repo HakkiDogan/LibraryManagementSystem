@@ -12,11 +12,8 @@ namespace BusinessLayer.Abstract
 		List<BookTransaction> GetAll();
 
 		void AddBookTransaction(BookTransaction book);
-
-		//void RemoveBook(int id);
-
-		//void UpdateBook(Book book);
-		void BookReturn(BookTransaction bookTransaction, decimal punishmentPrice );
+		List<BookTransaction> MyBooks(int memberId);
+		void BookReturn(BookTransaction bookTransaction, decimal punishmentPrice);
 		BookTransaction GetById(int id);
 	}
 }

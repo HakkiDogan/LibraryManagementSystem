@@ -112,5 +112,6 @@ namespace LibraryManagementSystem.Controllers
 			_bookService.UpdateBook(book);
 			return RedirectToAction("Index");
 		}
+
 	}
 }

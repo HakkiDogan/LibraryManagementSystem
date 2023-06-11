@@ -4,9 +4,13 @@ using DataAccessLayer.Abstract;
 using DataAccessLayer.Concrete;
 using DataAccessLayer.Concrete.EntityFramework;
 using DataAccessLayer.Concrete.Repositories;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Mvc.Authorization;
+using Microsoft.AspNetCore.Mvc.ViewComponents;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -30,8 +34,6 @@ namespace LibraryManagementSystem
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            //services.AddDbContext<Context>(options =>
-            //    options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             //Tüm kullanýlan dependency injectionlar eklenmeli.
             services.AddTransient<ICategoryService, CategoryManager>();
@@ -58,6 +60,25 @@ namespace LibraryManagementSystem
 			services.AddSingleton<IPunishmentDal, EfPunishmentDal>();
 
 			services.AddControllersWithViews();
+
+            services.AddSession();
+
+            //services.AddMvc(config =>
+            //{
+            //    var policy = new AuthorizationPolicyBuilder()
+            //        .RequireAuthenticatedUser()
+            //        .Build();
+            //    config.Filters.Add(new AuthorizeFilter(policy));
+            //});
+
+            services.AddMvc();
+
+            services.AddAuthentication(
+                CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie(x =>
+                {
+                    x.LoginPath = "/auth/login";
+                });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -76,7 +97,12 @@ namespace LibraryManagementSystem
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
+            app.UseAuthentication();
+
+            app.UseSession();
+
             app.UseRouting();
+            
 
             app.UseAuthorization();
 
@@ -84,7 +110,7 @@ namespace LibraryManagementSystem
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Category}/{action=Index}/{id?}");
+                    pattern: "{controller=Home}/{action=Index}/{id?}");
             });
         }
     }

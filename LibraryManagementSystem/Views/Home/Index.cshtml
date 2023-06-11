@@ -40,11 +40,21 @@
                     <li class="nav-item mx-0 mx-lg-1">
                         <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#about">Hakkımızda</a>
                     </li>
-                    <li class="nav-item mx-0 mx-lg-1">
-                        <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#contact">İletişim</a>
+                   <li class="nav-item mx-0 mx-lg-1">
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="/user/Index">Hesabım</a>
+                        }                    
                     </li>
                     <li class="nav-item mx-0 mx-lg-1">
-                        <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="/auth/login">Giriş Yap</a>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="/auth/LogOut">Çıkış Yap</a>
+                        }
+                        else
+                        {
+                            <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="/auth/login">Giriş Yap</a>
+                        }
                     </li>
                 </ul>
             </div>
@@ -136,18 +146,11 @@
                 </div>
             </div>
 
-            <!-- About Section Button -->
-            <div class="text-center mt-4">
-                <a class="btn btn-xl btn-outline-light" href="https://startbootstrap.com/themes/freelancer/">
-                    <i class="fas fa-download mr-2"></i>
-                    Free Download!
-                </a>
-            </div>
 
         </div>
     </section>
 
-    <!-- Contact Section -->
+    @*<!-- Contact Section -->
     <section class="page-section" id="contact">
         <div class="container">
 
@@ -206,7 +209,7 @@
             </div>
 
         </div>
-    </section>
+    </section>*@
 
     <!-- Footer -->
     <footer class="footer text-center">
@@ -255,7 +258,7 @@
     <!-- Copyright Section -->
     <section class="copyright py-4 text-center text-white">
         <div class="container">
-            <small>Copyright &copy; Your Website 2019</small>
+            <small>© 2023 Tüm hakları saklıdır</small>
         </div>
     </section>
 

@@ -84,5 +84,12 @@ namespace BusinessLayer.Concrete
 			book.IsStatus= true;
 			_bookService.UpdateBook(book);
 		}
+
+		public List<BookTransaction> MyBooks(int memberId)
+		{
+			var books = GetAll().Where(b => b.MemberId == memberId).ToList();		
+			return books;
+		}
+
 	}
 }

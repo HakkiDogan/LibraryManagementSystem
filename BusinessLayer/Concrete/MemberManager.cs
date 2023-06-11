@@ -13,10 +13,12 @@ namespace BusinessLayer.Concrete
 	public class MemberManager : IMemberService
 	{
 		IMemberDal _memberDal;
+		IBookService _bookService;
 
-		public MemberManager(IMemberDal memberDal)
+		public MemberManager(IMemberDal memberDal, IBookService bookService)
 		{
 			_memberDal = memberDal;
+			_bookService = bookService;
 		}
 
 		public void AddMember(Member member)

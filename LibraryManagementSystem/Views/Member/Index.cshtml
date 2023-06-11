@@ -11,8 +11,8 @@
 
 <h1>Üyeler</h1>
 
-<table class="table table-bordered">
-	<tr>
+<table class="table table-striped">
+	<tr style="background-color:rgb(252,178,22)">
 		<th>ID</th>
 		<th>Üye Adı</th>
 		<th>Üye Soyadı</th>
@@ -22,6 +22,7 @@
 		<th>Okul</th>
 		<th>Sil</th>
 		<th>Güncelle</th>
+		<th>Kitap Geçmişi</th>
 	</tr>
 	@foreach (var m in Model)
 	{
@@ -32,12 +33,13 @@
 			<td>@m.Mail</td>
 			<td>@m.UserName</td>
 			<td>@m.PhoneNumber</td>
-			<td>@m.School</td>
+			<td width="200">@m.School</td>
 			<td>
 				@Html.ActionLink("Sil","RemoveMember", new {id=m.MemberId} ,
 			new {@class="btn btn-danger", onclick="return confirm('Üyeyi silmek istiyor musunuz?')"})
 			</td>
 			<td><a href="/Member/UpdateMember/@m.MemberId" class="btn btn-success">Güncelle</a></td>
+			<td><a href="/Member/MemberBookHistory/@m.MemberId" class="btn btn-success" style="background-color:lightseagreen">Kitap Geçmişi</a></td>
 		</tr>
 	}
 

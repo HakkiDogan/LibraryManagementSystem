@@ -68,5 +68,12 @@ namespace BusinessLayer.Concrete
 		{
 			_bookDal.Update(book);
 		}
+
+		public List<Book> BooksByWriterId(int writerId)
+		{
+			var books = GetAll().Where(w => w.WriterId == writerId).ToList();
+			return books;
+		}
+
 	}
 }

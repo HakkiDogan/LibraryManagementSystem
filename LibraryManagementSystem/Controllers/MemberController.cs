@@ -12,10 +12,12 @@ namespace LibraryManagementSystem.Controllers
 	public class MemberController : Controller
 	{
 		IMemberService _memberService;
+		IBookTransactionService _bookTransactionService;
 
-		public MemberController(IMemberService memberService)
+		public MemberController(IMemberService memberService, IBookTransactionService bookTransactionService)
 		{
 			_memberService = memberService;
+			_bookTransactionService = bookTransactionService;
 		}
 
 		public IActionResult Index(int page = 1)
@@ -82,6 +84,14 @@ namespace LibraryManagementSystem.Controllers
 				}
 			}
 			return View();
+		}
+
+		public IActionResult MemberBookHistory(int id)
+		{
+			var member = _memberService.GetById(id);
+			ViewBag.MemberFullName = member.Name + " " + member.Surname;
+			var memberBookHistory = _bookTransactionService.MyBooks(id);
+			return View(memberBookHistory);
 		}
 	}
 }

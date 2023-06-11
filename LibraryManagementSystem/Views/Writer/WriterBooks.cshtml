@@ -1,0 +1,31 @@
+﻿@using EntityLayer.Concrete
+@model List<Book>
+@{
+    ViewData["Title"] = "WriterBooks";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<h1>@ViewBag.WriterFullName Kitap Listesi</h1>
+
+<table class="table table-striped">
+	<tr style="background-color:rgb(252,178,22)">
+		<th>ID</th>
+		<th>Kitap Adı</th>
+		<th>Kategori</th>
+		<th>Yayın Evi</th>
+		<th>Sayfa Sayısı</th>
+	</tr>
+	@foreach (var b in Model)
+	{
+			<tr>
+				<td>@b.BookId</td>
+				<td>@b.Name</td>
+				<td>@b.Category.Name</td>
+				<td>@b.Publisher.Name</td>
+				<td>@b.Page</td>
+			</tr>
+	}
+</table>
+<br />
+<br />
+

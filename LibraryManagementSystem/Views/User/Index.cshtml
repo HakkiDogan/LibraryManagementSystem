@@ -1,0 +1,48 @@
+﻿@model EntityLayer.Concrete.Member
+@{
+	ViewData["Title"] = "Index";
+	Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+<h1>Üye Profil Bilgileri</h1>
+
+@using (Html.BeginForm("Index", "User", FormMethod.Post))
+{
+	<div class="form-group" style="margin-bottom:15px">
+		@Html.HiddenFor(m => m.MemberId, new {@class="form-control"})
+
+		@Html.Label("Üye Adı")
+		@Html.TextBoxFor(m => m.Name, new {@class="form-control"})
+		@Html.ValidationMessageFor(m=> m.Name,null, new { @class = "text-danger"})
+		<br />
+		@Html.Label("Üye Soyadı")
+		@Html.TextBoxFor(m => m.Surname, new {@class="form-control"})
+		@Html.ValidationMessageFor(m=> m.Surname,null, new { @class = "text-danger"})
+		<br />
+		@Html.Label("Kullanıcı Adı")
+		@Html.TextBoxFor(m => m.UserName, new {@class="form-control"})
+		@Html.ValidationMessageFor(m=> m.UserName,null, new { @class = "text-danger"})
+		<br />
+@*		@Html.Label("Şifre")*@
+		@Html.HiddenFor(m => m.Password, new {@class="form-control"})
+@*		@Html.ValidationMessageFor(m=> m.Password,null, new { @class = "text-danger"})*@
+
+		@Html.Label("E-posta Adresi")
+		@Html.TextBoxFor(m => m.Mail, new {@class="form-control", @readonly = "readonly" })
+		@Html.ValidationMessageFor(m=> m.Mail,null, new { @class = "text-danger"})
+		<br />
+		@Html.Label("Okul Adı")
+		@Html.TextBoxFor(m => m.School, new {@class="form-control"})
+		@Html.ValidationMessageFor(m=> m.School,null, new { @class = "text-danger"})
+		<br />
+		@Html.Label("Telefon")
+		@Html.TextBoxFor(m => m.PhoneNumber, new {@class="form-control"})
+		@Html.ValidationMessageFor(m=> m.PhoneNumber,null, new { @class = "text-danger"})
+		<br />
+	</div>
+	<div>
+		<button class="btn btn-warning">Profil Bilgilerini Güncelle</button>
+	</div>
+}
+
+

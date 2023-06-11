@@ -1,0 +1,28 @@
+﻿@using EntityLayer.Concrete
+@model List<BookTransaction>
+@{
+    ViewData["Title"] = "MemberBookHistory";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<h1>@ViewBag.MemberFullName Kitap Geçmişi</h1>
+
+<table class="table table-striped" style="margin-bottom:15px; margin-top:15px;">
+	<tr style="background-color:rgb(252,178,22)">
+		<th>Kitap Adı</th>
+		<th>Personel</th>
+		<th>Alış Tarihi</th>
+		<th>Üye İade Tarihi</th>
+	</tr>
+	@foreach (var b in Model)
+	{
+		<tr>
+			<td>@b.Book.Name</td>
+			<td>@b.Staff.Name</td>
+			<td>@b.IssueDate.ToShortDateString()</td>
+			<td>@b.MemberReturnDate?.ToShortDateString()</td>
+		</tr>
+	}
+</table>
+<br />
+<br />

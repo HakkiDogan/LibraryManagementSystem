@@ -7,10 +7,12 @@ namespace LibraryManagementSystem.Controllers
 	public class WriterController : Controller
 	{
 		IWriterService _writerService;
+		IBookService _bookService;
 
-		public WriterController(IWriterService writerService)
+		public WriterController(IWriterService writerService, IBookService bookService)
 		{
 			_writerService = writerService;
+			_bookService = bookService;
 		}
 
 		public IActionResult Index()
@@ -51,5 +53,15 @@ namespace LibraryManagementSystem.Controllers
 			_writerService.UpdateWriter(writer);
 			return RedirectToAction("Index");
 		}
+
+		public IActionResult WriterBooks(int id)
+		{
+			var writer = _writerService.GetById(id);
+			ViewBag.WriterFullName = writer.Name + " " + writer.Surname;
+			var books = _bookService.BooksByWriterId(id);
+			return View(books);
+		}
+
+
 	}
 }
