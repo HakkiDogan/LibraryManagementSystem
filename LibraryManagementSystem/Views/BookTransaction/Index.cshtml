@@ -25,7 +25,7 @@
 			<td>@b.Member.Name @b.Member.Surname</td>
 			<td>@b.Staff.Name</td>
 			<td>@b.IssueDate.ToShortDateString()</td>
-			<td>@b.ReturnDate?.ToShortDateString()</td>
+			<td>@b.ReturnDate.ToShortDateString()</td>
 			<td><a href="/BookTransaction/BookReturn/@b.BookTransactionId" class="btn btn-default" style="background-color:orange">Kitabı İade Et</a></td>
 		</tr>
 	}

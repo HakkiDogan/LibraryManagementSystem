@@ -12,8 +12,13 @@
 	</div>
 	<div style="margin-top:15px">
 		<label>Kitap Adı</label>
+		
 		@Html.DropDownListFor(b => b.BookId,(List<SelectListItem>)ViewBag.Books,
 		new {@class= "form-control"} )
+		@if (((List<SelectListItem>)ViewBag.Books).Count == 0)
+		{
+			<p style="color:orange">Verilebilecek kitap kalmamıştır</p>
+		}
 	</div>
 	<div style="margin-top:15px">
 		<label>Personel Adı</label>
@@ -30,6 +35,6 @@
 	</div>
 
 	<div style="margin-top:15px">
-		<button class="btn btn-info" id="Btn1">Kitapı Ödünç Ver</button>
+		<button class="btn btn-info" id="Btn1">Kitabı Ödünç Ver</button>
 	</div>
 </form>

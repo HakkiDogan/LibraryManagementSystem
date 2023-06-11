@@ -16,7 +16,7 @@ namespace BusinessLayer.Abstract
 		//void RemoveBook(int id);
 
 		//void UpdateBook(Book book);
-
+		void BookReturn(BookTransaction bookTransaction, decimal punishmentPrice );
 		BookTransaction GetById(int id);
 	}
 }

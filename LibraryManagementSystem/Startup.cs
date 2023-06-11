@@ -55,6 +55,8 @@ namespace LibraryManagementSystem
 			services.AddTransient<IBookTransactionService, BookTransactionManager>();
 			services.AddSingleton<IBookTransactionDal, EfBookTransactionDal>();
 
+			services.AddSingleton<IPunishmentDal, EfPunishmentDal>();
+
 			services.AddControllersWithViews();
         }
 

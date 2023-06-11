@@ -13,7 +13,7 @@ namespace EntityLayer.Concrete
         public int MemberId { get; set; }
         public int BookTransactionId { get; set; }
         public DateTime StartDate { get; set; }
-        public DateTime FinishDate { get; set; }
+        public DateTime? FinishDate { get; set; }
         public decimal Money { get; set; }
         public Member Member { get; set; }
         public BookTransaction BookTransaction { get; set; }

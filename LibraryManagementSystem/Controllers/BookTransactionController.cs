@@ -3,6 +3,7 @@ using EntityLayer.Concrete;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -25,7 +26,7 @@ namespace LibraryManagementSystem.Controllers
 
 		public IActionResult Index()
 		{
-			var bookTransaction = _bookTransactionService.GetAll();
+			var bookTransaction = _bookTransactionService.GetAll().Where(bt => bt.TransactionStatus == false).ToList();
 			return View(bookTransaction);
 		}
 
@@ -50,7 +51,7 @@ namespace LibraryManagementSystem.Controllers
 										   }).ToList();
 			ViewBag.Staffs = staffs;
 
-			List<SelectListItem> books = (from b in _bookService.GetAll().ToList()
+			List<SelectListItem> books = (from b in _bookService.GetAll().Where(b => b.IsStatus == true).ToList()
 										  select new SelectListItem
 										  {
 											  Text = b.Name,
@@ -65,7 +66,33 @@ namespace LibraryManagementSystem.Controllers
 		public IActionResult LendingBook(BookTransaction bookTransaction)
 		{
 			_bookTransactionService.AddBookTransaction(bookTransaction);
-			return RedirectToAction("LendingBook");
+			return RedirectToAction("Index");
+		}
+
+		[HttpGet]
+		public IActionResult BookReturn(int id)
+		{
+			var bookTransaction = _bookTransactionService.GetById(id);
+			DateTime d1 = DateTime.Parse(bookTransaction.ReturnDate.ToString());
+			DateTime d2 = DateTime.Now.Date;
+			TimeSpan difference = d2 - d1;
+			int daysDifference = difference.Days;
+			ViewBag.PunishmentPrice = (daysDifference*5);
+			TempData["price"]  = daysDifference*5;
+			return View(bookTransaction);
+		}
+
+		[HttpPost]
+		public IActionResult BookReturn(BookTransaction bookTransaction)
+		{
+			_bookTransactionService.BookReturn(bookTransaction, Convert.ToDecimal(TempData["price"]));
+			return RedirectToAction("Index");
+		}
+
+		public IActionResult Transactions()
+		{
+			var bookTransaction = _bookTransactionService.GetAll().Where(bt => bt.TransactionStatus == true).ToList();
+			return View(bookTransaction);
 		}
 	}
 }

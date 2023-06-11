@@ -1,0 +1,120 @@
+﻿@model EntityLayer.Concrete.Member
+@{
+	Layout = null;
+}
+
+<!--A Design by W3layouts
+Author: W3layouts
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+	<title>Course Register Form a Flat Responsive Widget Template :: w3layouts</title>
+	<!-- custom-theme -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="keywords" content="Course Register Form Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+	<script type="application/x-javascript">
+		addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
+			   function hideURLbar(){ window.scrollTo(0,1); } </script>
+	<!-- //custom-theme -->
+	<!-- css files -->
+	<link href="//fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&amp;subset=devanagari,latin-ext" rel="stylesheet">
+	<link href="//fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&amp;subset=cyrillic,cyrillic-ext,greek,greek-ext,latin-ext,vietnamese" rel="stylesheet">
+	<link href="~/webregister/css/style.css" type="text/css" rel="stylesheet" media="all">
+	<!-- //css files -->
+
+	<link rel="stylesheet" href="~/webregister/css/font-awesome.css"> <!-- Font-Awesome-Icons-CSS -->
+
+</head>
+<!-- body starts -->
+<body>
+	<!-- section -->
+	<section class="register">
+		<div class="register-full">
+			<div class="register-left">
+				<div class="register">
+					<div class="logo">
+						<a href="#"><span class="fa fa-graduation-cap" aria-hidden="true"></span></a>
+					</div>
+					<h1>Kütüphane Yönetim Sistemi</h1>
+					<p>
+						Kütüphanemize hoşgeldiniz, kayıt olmak için sağ tarafta bulunan formu
+						bilgileri eksiksiz bir şekilde girerek kaydınızı gerçekleştirebilirsiniz.
+					</p>
+					<div class="content3">
+						<ul>
+							<li><a class="" href="/auth/login"> Giriş Yap</a></li>
+							<li><a class="read" href="/home/Index"> Siteye Dön</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="register-right">
+				<div class="register-in">
+					<h2><span class="fa fa-pencil"></span> Kayıt Formu</h2>
+					<div class="register-form">
+						<form method="post">
+							<div class="fields-grid">
+								@Html.Label("Üye Adı")
+								@Html.TextBoxFor(m => m.Name, new {@class="form-control",style="width:300px; margin-bottom:5px;" })
+								<br />
+								@Html.ValidationMessageFor(x=> x.Name,null, new { @class = "text-danger " ,@style = "color:red"})
+								<br />
+							
+								@Html.Label("Üye Soyadı")
+								@Html.TextBoxFor(m => m.Surname, new {@class="form-control",style="width:300px; margin-bottom:5px;" })
+								<br />
+								@Html.ValidationMessageFor(x=> x.Surname,null, new { @class = "text-danger ",@style = "color:red"})
+								<br />
+								
+								@Html.Label("E-posta Adresi")
+								@Html.TextBoxFor(m => m.Mail, new {@class="form-control",style="width:300px; margin-bottom:5px;" })
+								<br />
+								@Html.ValidationMessageFor(x=> x.Mail,null, new { @class = "text-danger ",@style = "color:red"})
+								<br />
+							
+								@Html.Label("Kullanıcı Adı")
+								@Html.TextBoxFor(m => m.UserName, new {@class="form-control",style="width:300px; margin-bottom:5px;" })
+								<br />
+								@Html.ValidationMessageFor(x=> x.UserName,null, new { @class = "text-danger ",@style = "color:red"})
+								<br />
+								@Html.Label("Şifre")
+								<br />
+								@Html.PasswordFor(m => m.Password, new {@class="form-control",style="width:300px; margin-bottom:5px;" })
+								<br />
+								@Html.ValidationMessageFor(x=> x.Password,null, new { @class = "text-danger ",@style = "color:red"})
+								<br />				
+								@Html.Label("Telefon")
+								@Html.TextBoxFor(m => m.PhoneNumber, new {@class="form-control",style="width:300px; margin-bottom:5px;" })
+								<br />
+								@Html.ValidationMessageFor(x=> x.PhoneNumber,null, new { @class = "text-danger ",@style = "color:red"})
+								<br />
+								@Html.Label("Okul Adı")
+								@Html.TextBoxFor(m => m.School, new {@class="form-control",style="width:300px; margin-bottom:5px;" })
+								<br />
+								@Html.ValidationMessageFor(x=> x.School,null, new { @class = "text-danger ",@style = "color:red"})
+								<br />
+								@*<label class="checkbox"><input type="checkbox" name="checkbox" checked><i></i><a href="#">Şartları okudum </a>kabul ediyorum </label>
+								*@
+							</div>
+							<input type="submit" value="Kayıt ol">
+						</form>
+					</div>
+				</div>
+				<div class="clear"> </div>
+			</div>
+			<div class="clear"> </div>
+		</div>
+		<!-- copyright -->
+		<p class="agile-copyright">© 2023 Tüm hakları saklıdır</p>
+		<!-- //copyright -->
+	</section>
+	<!-- //section -->
+</body>
+<!-- //body ends -->
+</html>

@@ -108,6 +108,7 @@ namespace LibraryManagementSystem.Controllers
 		[HttpPost]
 		public IActionResult UpdateBook(Book book)
 		{
+			book.IsStatus= true;
 			_bookService.UpdateBook(book);
 			return RedirectToAction("Index");
 		}

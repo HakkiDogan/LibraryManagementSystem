@@ -29,6 +29,7 @@ namespace BusinessLayer.Concrete
 			book.Category = _categoryService.GetById(book.CategoryId);
 			book.Writer = _writerService.GetById(book.WriterId);
 			book.Publisher = _publisherService.GetById(book.PublisherId);
+			book.IsStatus = true;
 			_bookDal.Add(book);
 		}
 

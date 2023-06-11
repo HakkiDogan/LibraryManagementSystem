@@ -16,6 +16,7 @@ namespace EntityLayer.Concrete
         public int PublisherId { get; set; }
         public string YearOfPublication { get; set; }
         public string Page { get; set; }
+        public bool IsStatus { get; set; }
         public  bool IsDeleted { get; set; }	
 		public Category Category { get; set; }
 		public Writer Writer { get; set; }
