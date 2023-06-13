@@ -1,4 +1,5 @@
 ﻿using EntityLayer.Concrete;
+using EntityLayer.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,8 +13,9 @@ namespace BusinessLayer.Abstract
 		List<BookTransaction> GetAll();
 
 		void AddBookTransaction(BookTransaction book);
-		List<BookTransaction> MyBooks(int memberId);
+		List<TransactionHistoryModel> MyBooks(int memberId);
 		void BookReturn(BookTransaction bookTransaction, decimal punishmentPrice);
 		BookTransaction GetById(int id);
+		List<TransactionHistoryModel> TransactionHistories();
 	}
 }

@@ -59,6 +59,8 @@ namespace LibraryManagementSystem
 
 			services.AddSingleton<IPunishmentDal, EfPunishmentDal>();
 
+			services.AddSingleton<IAdminDal, EfAdminDal>();
+
 			services.AddControllersWithViews();
 
             services.AddSession();

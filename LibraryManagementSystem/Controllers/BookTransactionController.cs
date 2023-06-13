@@ -91,8 +91,9 @@ namespace LibraryManagementSystem.Controllers
 
 		public IActionResult Transactions()
 		{
-			var bookTransaction = _bookTransactionService.GetAll().Where(bt => bt.TransactionStatus == true).ToList();
-			return View(bookTransaction);
+			//var bookTransaction = _bookTransactionService.GetAll().Where(bt => bt.TransactionStatus == true).ToList();
+			var booktransactions = _bookTransactionService.TransactionHistories();
+			return View(booktransactions);
 		}
 	}
 }

@@ -2,6 +2,7 @@
 using DataAccessLayer.Abstract;
 using DataAccessLayer.Concrete.Repositories;
 using EntityLayer.Concrete;
+using EntityLayer.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -85,10 +86,33 @@ namespace BusinessLayer.Concrete
 			_bookService.UpdateBook(book);
 		}
 
-		public List<BookTransaction> MyBooks(int memberId)
+		public List<TransactionHistoryModel> TransactionHistories()
 		{
-			var books = GetAll().Where(b => b.MemberId == memberId).ToList();		
-			return books;
+			List<TransactionHistoryModel> transactionHistories = new List<TransactionHistoryModel>();
+			var bookTransactions = GetAll().Where(bt => bt.TransactionStatus == true).ToList();
+			var punishments = _punishmentDal.GetAll();
+			bookTransactions.ForEach(bt =>
+			{
+				transactionHistories.Add(new TransactionHistoryModel()
+				{
+					BookTransactionId = bt.BookTransactionId,
+					MemberId = bt.MemberId,
+					BookName = bt.Book.Name,
+					MemberName = bt.Member.Name + " " +bt.Member.Surname,
+					StaffName= bt.Staff.Name,
+					IssueDate= bt.IssueDate,
+					MemberReturnDate= bt.MemberReturnDate,
+					Money = _punishmentDal.Get(p => p.BookTransactionId == bt.BookTransactionId)?.Money  != null ? _punishmentDal.Get(p => p.BookTransactionId == bt.BookTransactionId).Money : 0
+				});
+			});
+
+			return transactionHistories;
+		}
+
+		public List<TransactionHistoryModel> MyBooks(int memberId)
+		{
+			var myTransacationHistory = TransactionHistories().Where(th => th.MemberId == memberId).ToList();
+			return myTransacationHistory;
 		}
 
 	}

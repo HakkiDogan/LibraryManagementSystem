@@ -26,5 +26,6 @@ namespace DataAccessLayer.Concrete
         public DbSet<Punishment> Punishments { get; set; }
         public DbSet<Staff> Staffs { get; set; }
         public DbSet<Writer> Writers { get; set; }
-    }
+		public DbSet<Admin> Admins { get; set; }
+	}
 }

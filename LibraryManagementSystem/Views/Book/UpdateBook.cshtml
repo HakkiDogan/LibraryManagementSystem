@@ -8,10 +8,9 @@
 @using (Html.BeginForm("UpdateBook", "Book", FormMethod.Post))
 {
 	<div class="form-group" style="margin-bottom:15px">
-		<label class="font-weight-bold">ID</label>
-		@Html.TextBoxFor(b => b.BookId, new {@class="form-control"})
-		<br />
-		<label class="font-weight-bold">Yazar Adı</label>
+		@Html.HiddenFor(b => b.BookId, new {@class="form-control"})
+		<br/>
+		<label class="font-weight-bold">Kitap Adı</label>
 		@Html.TextBoxFor(b => b.Name, new {@class="form-control"})
 		<br />
 		<label class="font-weight-bold">Kategori</label>

@@ -1,27 +1,27 @@
-﻿@using EntityLayer.Concrete
-@model List<BookTransaction>
+﻿@using EntityLayer.DTOs
+@model List<TransactionHistoryModel>
 @{
-    ViewData["Title"] = "MyBooks";
-    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+	ViewData["Title"] = "MyBooks";
+	Layout = "~/Views/Shared/_LayoutUser.cshtml";
 }
 
 <h1>Kitap Geçmişim</h1>
 
-<table class="table table-bordered" style="margin-bottom:15px; margin-top:15px;">
-	<tr>
+<table class="table table-striped" style="margin-bottom:15px; margin-top:15px;">
+	<tr style="background-color:rgb(252,178,22)">
 		<th>Kitap Adı</th>
 		<th>Alış Tarihi</th>
 		<th>Üye İade Tarihi</th>
-	@*	<th>Detaylar</th>*@
+		<th>Ceza Tutarı</th>
 	</tr>
 	@foreach (var b in Model)
 	{
-			<tr>
-				<td>@b.Book.Name</td>
-				<td>@b.IssueDate.ToShortDateString()</td>
-				<td>@b.MemberReturnDate?.ToShortDateString()</td>
-@*				<td><a href="/BookTransaction/BookReturn/@b.BookTransactionId" class="btn btn-default" style="background-color:orange">Detaylar</a></td>
-*@			</tr>
+		<tr>
+			<td>@b.BookName</td>
+			<td>@b.IssueDate.ToShortDateString()</td>
+			<td>@b.MemberReturnDate?.ToShortDateString()</td>
+			<td>@b.Money ₺</td>
+		</tr>
 	}
 </table>
 <br />
