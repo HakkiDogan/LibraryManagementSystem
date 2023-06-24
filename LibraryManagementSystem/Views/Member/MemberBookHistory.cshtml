@@ -1,5 +1,5 @@
-﻿@using EntityLayer.Concrete
-@model List<BookTransaction>
+﻿@using EntityLayer.DTOs
+@model List<TransactionHistoryModel>
 @{
     ViewData["Title"] = "MemberBookHistory";
     Layout = "~/Views/Shared/Layout.cshtml";
@@ -17,8 +17,8 @@
 	@foreach (var b in Model)
 	{
 		<tr>
-			<td>@b.Book.Name</td>
-			<td>@b.Staff.Name</td>
+			<td>@b.BookName</td>
+			<td>@b.StaffName</td>
 			<td>@b.IssueDate.ToShortDateString()</td>
 			<td>@b.MemberReturnDate?.ToShortDateString()</td>
 		</tr>

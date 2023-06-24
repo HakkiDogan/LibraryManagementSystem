@@ -7,8 +7,7 @@
 @using (Html.BeginForm("UpdateWriter", "Writer", FormMethod.Post))
 {
 	<div class="form-group" style="margin-bottom:15px">
-		<label class="font-weight-bold">ID</label>
-		@Html.TextBoxFor(w => w.WriterId, new {@class="form-control"})
+		@Html.HiddenFor(w => w.WriterId, new {@class="form-control"})
 		<br />
 		<label class="font-weight-bold">Yazar Adı</label>
 		@Html.TextBoxFor(w => w.Name, new {@class="form-control"})

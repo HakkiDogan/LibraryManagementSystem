@@ -7,8 +7,7 @@
 @using (Html.BeginForm("UpdateMember", "Member", FormMethod.Post))
 {
 	<div class="form-group" style="margin-bottom:15px">
-		@Html.Label("ID")
-		@Html.TextBoxFor(m => m.MemberId, new {@class="form-control"})	
+		@Html.HiddenFor(m => m.MemberId, new {@class="form-control"})	
 		<br />
 		@Html.Label("Üye Adı")
 		@Html.TextBoxFor(m => m.Name, new {@class="form-control"})
@@ -22,10 +21,6 @@
 		@Html.TextBoxFor(m => m.UserName, new {@class="form-control"})
 		@Html.ValidationMessageFor(m=> m.UserName,null, new { @class = "text-danger"})
 		<br />
-		@Html.Label("Şifre")
-		@Html.TextBoxFor(m => m.Password, new {@class="form-control"})
-		@Html.ValidationMessageFor(m=> m.Password,null, new { @class = "text-danger"})
-		<br />
 		@Html.Label("E-posta Adresi")
 		@Html.TextBoxFor(m => m.Mail, new {@class="form-control"})
 		@Html.ValidationMessageFor(m=> m.Mail,null, new { @class = "text-danger"})
@@ -37,10 +32,6 @@
 		@Html.Label("Telefon")
 		@Html.TextBoxFor(m => m.PhoneNumber, new {@class="form-control"})
 		@Html.ValidationMessageFor(m=> m.PhoneNumber,null, new { @class = "text-danger"})
-		<br />
-		@Html.Label("Fotoğraf Linki")
-		@Html.TextBoxFor(m => m.Photograph, new {@class="form-control"})
-		@Html.ValidationMessageFor(m=> m.Photograph,null, new { @class = "text-danger"})
 		<br />
 	</div>
 	<div>
